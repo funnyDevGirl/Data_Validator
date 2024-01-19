@@ -17,8 +17,10 @@ jobs:
       - uses: gradle/gradle-build-action@v2
         with:
           gradle-version: 8.3
-      - run: ./gradlew checkstyleMain
-      - run: ./gradlew test
+          arguments: build
+          build-root-directory: app
+      #- run: ./gradlew checkstyleMain checkstyleTest
+      #- run: ./gradlew test
       - name: Publish code coverage
         uses: paambaati/codeclimate-action@v5.0.0
         env:
@@ -26,4 +28,5 @@ jobs:
           JACOCO_SOURCE_PATH: app/src/main/java
         with:
           coverageCommand: make report
+          #coverageCommand: ./gradlew jacocoTestReport
           coverageLocations: ${{github.workspace}}/app/build/reports/jacoco/test/jacocoTestReport.xml:jacoco
