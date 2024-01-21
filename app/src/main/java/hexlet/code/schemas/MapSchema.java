@@ -6,7 +6,7 @@ import java.util.Objects;
 public class MapSchema extends BaseSchema {
 
     //
-    public MapSchema(){
+    public MapSchema() {
         addCondition("type",
                 value -> value instanceof Map || value == null);
     }
