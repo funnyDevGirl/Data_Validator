@@ -1,5 +1,6 @@
 package hexlet.code;
 
+import hexlet.code.schemas.MapSchema;
 import hexlet.code.schemas.NumberSchema;
 import hexlet.code.schemas.StringSchema;
 
@@ -16,7 +17,7 @@ public class Validator {
     }
 
     //создаю новый объект MapSchema для обработки словарей:
-//    public MapSchema map() {
-//        return new MapSchema();
-//    }
+    public MapSchema map() {
+        return new MapSchema();
+    }
 }
