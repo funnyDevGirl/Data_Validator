@@ -2,7 +2,6 @@ name: Java CI
 
 on:
   - push
-  - pull_request
 
 jobs:
   build:
@@ -14,19 +13,21 @@ jobs:
         with:
           java-version: '20'
           distribution: 'temurin'
-      - uses: gradle/gradle-build-action@v2
-        with:
-          gradle-version: 8.3
-          arguments: build
-          build-root-directory: app
+      - name: Build with Gradle
+        run: make build
+      #- uses: gradle/gradle-build-action@v2
+        #with:
+          #gradle-version: 8.3
+          #arguments: build
+          #build-root-directory: app
       #- run: ./gradlew checkstyleMain checkstyleTest
       #- run: ./gradlew test
       - name: Publish code coverage
-        uses: paambaati/codeclimate-action@v5.0.0
+        uses: paambaati/codeclimate-action@v3.0.0
         env:
           CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
           JACOCO_SOURCE_PATH: app/src/main/java
         with:
-          #coverageCommand: make report
-          coverageCommand: ./gradlew jacocoTestReport
+          coverageCommand: make report
+          #coverageCommand: ./gradlew jacocoTestReport
           coverageLocations: ${{github.workspace}}/app/build/reports/jacoco/test/jacocoTestReport.xml:jacoco
