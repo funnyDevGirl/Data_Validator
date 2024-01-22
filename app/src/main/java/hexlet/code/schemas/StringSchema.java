@@ -27,6 +27,7 @@ public class StringSchema extends BaseSchema {
     /**
      * Adds a minimum length constraint for a string to the schema.
      * The string must be equal to or longer than the specified number.
+     * @param length
      * @return StringSchema object
      */
     public StringSchema minLength(int length) {
@@ -38,6 +39,7 @@ public class StringSchema extends BaseSchema {
     /**
      * Adds a row content constraint to the schema.
      * The string must contain a specific substring.
+     * @param subString
      * @return StringSchema object
      */
     public StringSchema contains(String subString) {

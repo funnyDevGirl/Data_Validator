@@ -5,7 +5,7 @@ import java.util.Objects;
 public class NumberSchema extends BaseSchema {
 
     /**
-     * Checking the initial state of the object is specified
+     * Checking the initial state of the object is specified.
      */
     public NumberSchema() {
         addCondition("type",
@@ -35,6 +35,8 @@ public class NumberSchema extends BaseSchema {
 
     /**
      * Adds a valid range that the number value must fall into including boundaries.
+     * @param begin
+     * @param end
      * @return NumberSchema object
      */
     public NumberSchema range(int begin, int end)  {

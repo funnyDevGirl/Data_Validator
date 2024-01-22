@@ -22,6 +22,8 @@ public abstract class BaseSchema {
     /**
      * The method is visible only to heirs.
      * Adding a validation rule.
+     * @param checkName
+     * @param condition
      */
     protected void addCondition(String checkName, Predicate<Object> condition) {
         conditions.put(checkName, condition);
@@ -30,6 +32,7 @@ public abstract class BaseSchema {
     /**
      * Checking for compliance with filters.
      * If the data passes through all filters, then the data is valid, if not, then it is not.
+     * @param obj
      * @return boolean object
      */
     public boolean isValid(Object obj) {
