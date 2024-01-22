@@ -40,7 +40,7 @@ public class MapSchema extends BaseSchema {
      *The shape() method is used to define the properties of a Map object
      * and create a schema to validate their values.
      * Each property of a Map object is assigned its own set of constraints (its own schema).
-     * @param schemas 
+     * @param schemas
      * @return MapSchema object
      */
     public MapSchema shape(Map<String, BaseSchema> schemas) {
