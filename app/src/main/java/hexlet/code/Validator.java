@@ -7,7 +7,7 @@ import hexlet.code.schemas.StringSchema;
 public class Validator {
 
     /**
-     * Creating StringSchema object to handle dictionaries
+     * Creating StringSchema object to handle dictionaries.
      * @return a new StringSchema object
      */
     public StringSchema string() {
@@ -15,7 +15,7 @@ public class Validator {
     }
 
     /**
-     * Creating NumberSchema object to handle dictionaries
+     * Creating NumberSchema object to handle dictionaries.
      * @return a new NumberSchema object
      */
     public NumberSchema number() {
@@ -23,7 +23,7 @@ public class Validator {
     }
 
     /**
-     * Creating MapSchema object to handle dictionaries
+     * Creating MapSchema object to handle dictionaries.
      * @return a new MapSchema object
      */
     public MapSchema map() {
