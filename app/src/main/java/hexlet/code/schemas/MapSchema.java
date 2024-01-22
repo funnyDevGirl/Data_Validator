@@ -30,7 +30,7 @@ public class MapSchema extends BaseSchema {
                         Object obj = ((Map) value).get(item.getKey());
                         return item.getValue().isValid(obj);
                     })
-                );
+        );
         return this;
     }
 }
