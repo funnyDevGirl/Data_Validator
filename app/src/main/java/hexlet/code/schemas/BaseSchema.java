@@ -6,23 +6,32 @@ import java.util.function.Predicate;
 
 public abstract class BaseSchema {
 
-    //словарь для накопления фильтров:
+    /**
+     * Dictionary for collecting filters.
+     */
     private final Map<String, Predicate<Object>> conditions;
 
-    //метод виден только наследникам.
-    //инициализируется новый объект схемы:
+    /**
+     * The method is visible only to heirs.
+     * Initializing a new schema object.
+     */
     protected BaseSchema() {
         this.conditions = new HashMap<>();
     }
 
-    //метод виден только наследникам.
-    //добавление проверки:
+    /**
+     * The method is visible only to heirs.
+     * Adding a validation rule.
+     */
     protected void addCondition(String checkName, Predicate<Object> condition) {
         conditions.put(checkName, condition);
     }
 
-    //проверка на соответствие фильтрам:
-    //если данные проходят через все фильтры - значит данные валидны, если нет - значит нет
+    /**
+     * Checking for compliance with filters.
+     * If the data passes through all filters, then the data is valid, if not, then it is not.
+     * @return boolean object
+     */
     public boolean isValid(Object obj) {
         return conditions.values().stream().allMatch(condition -> condition.test(obj));
     }
