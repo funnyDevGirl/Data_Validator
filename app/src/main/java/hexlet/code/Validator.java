@@ -6,17 +6,26 @@ import hexlet.code.schemas.StringSchema;
 
 public class Validator {
 
-    //создаю новый объект StringSchema для обработки строк:
+    /**
+     * Creating StringSchema object to handle dictionaries
+     * @return a new StringSchema object
+     */
     public StringSchema string() {
         return new StringSchema();
     }
 
-    //создаю новый объект NumberSchema для обработки числел:
+    /**
+     * Creating NumberSchema object to handle dictionaries
+     * @return a new NumberSchema object
+     */
     public NumberSchema number() {
         return new NumberSchema();
     }
 
-    //создаю новый объект MapSchema для обработки словарей:
+    /**
+     * Creating MapSchema object to handle dictionaries
+     * @return a new MapSchema object
+     */
     public MapSchema map() {
         return new MapSchema();
     }
