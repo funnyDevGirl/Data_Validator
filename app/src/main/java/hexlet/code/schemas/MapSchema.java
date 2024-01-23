@@ -9,8 +9,10 @@ public class MapSchema extends BaseSchema {
      * Checking the initial state of the object is specified.
      */
     public MapSchema() {
-        addCondition("type",
-                value -> value == null || value instanceof Map);
+        addCondition(
+            "required",
+            value -> value instanceof Map
+        );
     }
 
     /**
@@ -19,8 +21,7 @@ public class MapSchema extends BaseSchema {
      * @return MapSchema object
      */
     public MapSchema required() {
-        addCondition("required",
-                Objects::nonNull);
+        required = true;
         return this;
     }
 
