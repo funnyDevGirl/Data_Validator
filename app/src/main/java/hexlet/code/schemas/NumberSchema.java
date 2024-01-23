@@ -9,7 +9,9 @@ public class NumberSchema extends BaseSchema {
      */
     public NumberSchema() {
         addCondition("type",
-                value -> value instanceof Integer || value == null);
+                //вот так у меня было:
+                //value -> value instanceof Integer || value == null);
+                value -> value instanceof Integer);
     }
 
     /**
@@ -18,7 +20,8 @@ public class NumberSchema extends BaseSchema {
      */
     public NumberSchema required() {
         addCondition("required",
-                Objects::nonNull);
+                //Objects::nonNull);
+                value -> value instanceof Number && ((int) value) != 0);
         return this;
     }
 
@@ -29,19 +32,21 @@ public class NumberSchema extends BaseSchema {
      */
     public NumberSchema positive() {
         addCondition("positive",
-                value -> value == null || value instanceof Integer  && (int) value > 0);
+                //вот так у меня было:
+                //value -> value == null || value instanceof Integer  && (int) value > 0);
+                value -> (int) value > 0);
         return this;
     }
 
     /**
      * Adds a valid range that the number value must fall into including boundaries.
-     * @param begin
-     * @param end
+     * @param min
+     * @param max
      * @return NumberSchema object
      */
-    public NumberSchema range(int begin, int end)  {
+    public NumberSchema range(int min, int max)  {
         addCondition("range",
-                value -> ((int) value) >= begin && ((int) value) <= end);
+                value -> ((int) value) >= min && ((int) value) <= max);
         return this;
     }
 }
