@@ -10,7 +10,7 @@ public class MapSchema extends BaseSchema {
      */
     public MapSchema() {
         addCondition("type",
-                value -> value instanceof Map || value == null);
+                value -> value == null || value instanceof Map);
     }
 
     /**

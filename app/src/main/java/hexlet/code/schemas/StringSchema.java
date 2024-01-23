@@ -1,6 +1,5 @@
 package hexlet.code.schemas;
 
-import java.util.Objects;
 
 public class StringSchema extends BaseSchema {
 
@@ -19,8 +18,7 @@ public class StringSchema extends BaseSchema {
      */
     public StringSchema required() {
         addCondition("required",
-                //value -> !value.toString().isEmpty());
-                value -> !Objects.equals(value, "") && !Objects.isNull(value));
+                value -> value instanceof String && !((String) value).isEmpty());
         return this;
     }
 
