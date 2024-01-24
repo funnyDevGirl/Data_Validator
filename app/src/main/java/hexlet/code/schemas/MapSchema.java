@@ -1,7 +1,6 @@
 package hexlet.code.schemas;
 
 import java.util.Map;
-import java.util.Objects;
 
 public class MapSchema extends BaseSchema {
 
@@ -9,8 +8,10 @@ public class MapSchema extends BaseSchema {
      * Checking the initial state of the object is specified.
      */
     public MapSchema() {
-        addCondition("type",
-                value -> value == null || value instanceof Map);
+        addCondition(
+                "required",
+                value -> value instanceof Map
+        );
     }
 
     /**
@@ -19,8 +20,7 @@ public class MapSchema extends BaseSchema {
      * @return MapSchema object
      */
     public MapSchema required() {
-        addCondition("required",
-                Objects::nonNull);
+        required = true;
         return this;
     }
 
@@ -46,10 +46,10 @@ public class MapSchema extends BaseSchema {
     public MapSchema shape(Map<String, BaseSchema> schemas) {
         addCondition("shape",
                 value ->
-                    schemas.entrySet().stream().allMatch(item -> {
-                        Object obj = ((Map) value).get(item.getKey());
-                        return item.getValue().isValid(obj);
-                    })
+                        schemas.entrySet().stream().allMatch(item -> {
+                            Object obj = ((Map) value).get(item.getKey());
+                            return item.getValue().isValid(obj);
+                        })
         );
         return this;
     }

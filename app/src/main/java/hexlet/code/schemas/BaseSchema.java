@@ -1,6 +1,6 @@
 package hexlet.code.schemas;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.Predicate;
 
@@ -9,15 +9,8 @@ public abstract class BaseSchema {
     /**
      * Dictionary for collecting filters.
      */
-    private final Map<String, Predicate<Object>> conditions;
-
-    /**
-     * The method is visible only to heirs.
-     * Initializing a new schema object.
-     */
-    protected BaseSchema() {
-        this.conditions = new HashMap<>();
-    }
+    protected Map<String, Predicate> conditions = new LinkedHashMap<>();
+    protected boolean required = false;
 
     /**
      * The method is visible only to heirs.
@@ -25,7 +18,7 @@ public abstract class BaseSchema {
      * @param checkName
      * @param condition
      */
-    protected void addCondition(String checkName, Predicate<Object> condition) {
+    protected final void addCondition(String checkName, Predicate condition) {
         conditions.put(checkName, condition);
     }
 
@@ -35,7 +28,21 @@ public abstract class BaseSchema {
      * @param obj
      * @return boolean object
      */
-    public boolean isValid(Object obj) {
-        return conditions.values().stream().allMatch(condition -> condition.test(obj));
+    public final boolean isValid(Object obj) {
+        //если не вызывался required(), то мы проверяем соответствие
+        if (!required) {
+            Predicate validate = conditions.get("required");
+            if (!validate.test(obj)) {
+                return true;
+            }
+        }
+        //будет true, если obj соответствует всем предикатам validate,
+        //если хоть один НЕ соотв-ет, то false
+        for (Predicate validate : conditions.values()) {
+            if (!validate.test(obj)) {
+                return false;
+            }
+        }
+        return true;
     }
 }

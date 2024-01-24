@@ -1,6 +1,5 @@
 package hexlet.code.schemas;
 
-import java.util.Objects;
 
 public class NumberSchema extends BaseSchema {
 
@@ -8,10 +7,10 @@ public class NumberSchema extends BaseSchema {
      * Checking the initial state of the object is specified.
      */
     public NumberSchema() {
-        addCondition("type",
-                //вот так у меня было:
-                //value -> value instanceof Integer || value == null);
-                value -> value instanceof Integer);
+        addCondition(
+                "required",
+                value -> value instanceof Integer
+        );
     }
 
     /**
@@ -19,9 +18,7 @@ public class NumberSchema extends BaseSchema {
      * @return NumberSchema object
      */
     public NumberSchema required() {
-        addCondition("required",
-                //Objects::nonNull);
-                value -> value instanceof Number && ((int) value) != 0);
+        required = true;
         return this;
     }
 
@@ -31,10 +28,10 @@ public class NumberSchema extends BaseSchema {
      * @return NumberSchema object
      */
     public NumberSchema positive() {
-        addCondition("positive",
-                //вот так у меня было:
-                //value -> value == null || value instanceof Integer  && (int) value > 0);
-                value -> (int) value > 0);
+        addCondition(
+                "positive",
+                value -> ((int) value) > 0
+        );
         return this;
     }
 
@@ -44,9 +41,11 @@ public class NumberSchema extends BaseSchema {
      * @param max
      * @return NumberSchema object
      */
-    public NumberSchema range(int min, int max)  {
-        addCondition("range",
-                value -> ((int) value) >= min && ((int) value) <= max);
+    public NumberSchema range(int min, int max) {
+        addCondition(
+                "range",
+                value -> ((int) value) >= min && ((int) value) <= max
+        );
         return this;
     }
 }
