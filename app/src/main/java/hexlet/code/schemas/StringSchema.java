@@ -11,7 +11,6 @@ public class StringSchema extends BaseSchema {
             "required",
             value -> value instanceof String && !((String) value).isEmpty()
         );
-        ;
     }
 
     /**
