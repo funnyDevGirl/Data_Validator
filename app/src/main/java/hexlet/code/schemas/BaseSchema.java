@@ -5,7 +5,6 @@ import java.util.Map;
 import java.util.function.Predicate;
 
 public abstract class BaseSchema {
-
     /**
      * Dictionary for collecting filters.
      */

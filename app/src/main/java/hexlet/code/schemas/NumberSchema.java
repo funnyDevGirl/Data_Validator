@@ -1,6 +1,5 @@
 package hexlet.code.schemas;
 
-
 public class NumberSchema extends BaseSchema {
 
     /**
@@ -15,6 +14,7 @@ public class NumberSchema extends BaseSchema {
 
     /**
      * Adds a constraint to the schema that prevents null from being used as a value.
+     *
      * @return NumberSchema object
      */
     public NumberSchema required() {
@@ -25,6 +25,7 @@ public class NumberSchema extends BaseSchema {
     /**
      * Adds a restriction on the sign of a number.
      * The number must be positive.
+     *
      * @return NumberSchema object
      */
     public NumberSchema positive() {

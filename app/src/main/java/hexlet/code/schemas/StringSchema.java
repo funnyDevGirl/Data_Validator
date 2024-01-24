@@ -1,6 +1,5 @@
 package hexlet.code.schemas;
 
-
 public class StringSchema extends BaseSchema {
 
     /**
@@ -22,6 +21,7 @@ public class StringSchema extends BaseSchema {
         required = true;
         return this;
     }
+
 
     /**
      * Adds a minimum length constraint for a string to the schema.
