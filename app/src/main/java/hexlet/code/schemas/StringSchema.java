@@ -7,8 +7,11 @@ public class StringSchema extends BaseSchema {
      * Checking the initial state of the object is specified.
      */
     public StringSchema() {
-        addCondition("type",
-                value -> value instanceof String || value == null);
+        addCondition(
+            "required",
+            value -> value instanceof String && !((String) value).isEmpty()
+        );
+        ;
     }
 
     /**
@@ -17,10 +20,10 @@ public class StringSchema extends BaseSchema {
      * @return StringSchema object
      */
     public StringSchema required() {
-        addCondition("required",
-                value -> value instanceof String && !((String) value).isEmpty());
+        required = true;
         return this;
     }
+
 
     /**
      * Adds a minimum length constraint for a string to the schema.
