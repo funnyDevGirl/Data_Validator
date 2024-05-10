@@ -1,6 +1,6 @@
 package hexlet.code.schemas;
 
-public class NumberSchema extends BaseSchema {
+public class NumberSchema extends BaseSchema<Object> {
 
     /**
      * Checking the initial state of the object is specified.
@@ -8,7 +8,7 @@ public class NumberSchema extends BaseSchema {
     public NumberSchema() {
         addCondition(
                 "required",
-                value -> value instanceof Integer
+                Integer.class::isInstance
         );
     }
 
