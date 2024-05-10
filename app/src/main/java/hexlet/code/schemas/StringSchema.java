@@ -1,6 +1,6 @@
 package hexlet.code.schemas;
 
-public class StringSchema extends BaseSchema {
+public class StringSchema extends BaseSchema<String> {
 
     /**
      * Checking the initial state of the object is specified.
@@ -8,7 +8,7 @@ public class StringSchema extends BaseSchema {
     public StringSchema() {
         addCondition(
                 "required",
-                value -> value instanceof String && !((String) value).isEmpty()
+                value -> value != null && !((String) value).isEmpty()
         );
     }
 
