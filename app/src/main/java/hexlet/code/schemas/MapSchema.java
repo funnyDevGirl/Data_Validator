@@ -45,11 +45,10 @@ public class MapSchema extends BaseSchema<Map<?, ?>> {
      */
     public MapSchema shape(Map<String, BaseSchema> schemas) {
         addCondition("shape",
-                value ->
-                        schemas.entrySet().stream().allMatch(item -> {
-                            Object obj = ((Map) value).get(item.getKey());
-                            return item.getValue().isValid(obj);
-                        })
+                value -> value.entrySet().stream()
+                        .allMatch((item) ->
+                                (schemas.get(item.getKey()).isValid(item.getValue()))
+                        )
         );
         return this;
     }
