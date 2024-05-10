@@ -1,6 +1,6 @@
 package hexlet.code.schemas;
 
-public class NumberSchema extends BaseSchema<Object> {
+public class NumberSchema extends BaseSchema<Integer> {
 
     /**
      * Checking the initial state of the object is specified.
