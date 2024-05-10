@@ -47,7 +47,7 @@ public class MapSchema extends BaseSchema<Map<?, ?>> {
         addCondition("shape",
                 value ->
                         schemas.entrySet().stream().allMatch(item -> {
-                            Object obj = ((Map<?, ?>) value).get(item.getKey());
+                            Object obj = ((Map) value).get(item.getKey());
                             return item.getValue().isValid(obj);
                         })
         );
