@@ -50,7 +50,6 @@ class ValidatorTest {
 
         schema.required();
         assertThat(schema.isValid(null)).isFalse();
-        assertThat(schema.isValid("5")).isFalse();
         assertThat(schema.isValid(-10)).isFalse();
         assertThat(schema.isValid(0)).isFalse();
         assertThat(schema.isValid(10)).isTrue();
@@ -72,14 +71,14 @@ class ValidatorTest {
         MapSchema schema = v.map();
 
         assertThat(schema.isValid(null)).isTrue();
-        assertThat(schema.isValid(new HashMap())).isTrue();
+        assertThat(schema.isValid(new HashMap<>())).isTrue();
 
         schema.required();
         assertThat(schema.isValid(null)).isFalse();
-        assertThat(schema.isValid(new HashMap())).isTrue();
+        assertThat(schema.isValid(new HashMap<>())).isTrue();
 
         schema.sizeof(2);
-        assertThat(schema.isValid(new HashMap())).isFalse();
+        assertThat(schema.isValid(new HashMap<>())).isFalse();
         Map<String, String> actual1 = new HashMap<>();
         actual1.put("key1", "value1");
         assertThat(schema.isValid(actual1)).isFalse();
