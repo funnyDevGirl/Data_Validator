@@ -2,7 +2,7 @@ package hexlet.code.schemas;
 
 import java.util.Map;
 
-public class MapSchema extends BaseSchema {
+public class MapSchema extends BaseSchema<Map<?, ?>> {
 
     /**
      * Checking the initial state of the object is specified.
@@ -10,7 +10,7 @@ public class MapSchema extends BaseSchema {
     public MapSchema() {
         addCondition(
                 "required",
-                value -> value instanceof Map
+                Map.class::isInstance
         );
     }
 
@@ -32,7 +32,7 @@ public class MapSchema extends BaseSchema {
      */
     public MapSchema sizeof(int size) {
         addCondition("size",
-                value -> ((Map) value).size() == size);
+                value -> ((Map<?, ?>) value).size() == size);
         return this;
     }
 
@@ -46,8 +46,9 @@ public class MapSchema extends BaseSchema {
     public MapSchema shape(Map<String, BaseSchema> schemas) {
         addCondition("shape",
                 value ->
-                        schemas.entrySet().stream().allMatch(item -> {
-                            Object obj = ((Map) value).get(item.getKey());
+                        schemas.entrySet().stream()
+                                .allMatch(item -> {
+                            Object obj = ((Map<?, ?>) value).get(item.getKey());
                             return item.getValue().isValid(obj);
                         })
         );
