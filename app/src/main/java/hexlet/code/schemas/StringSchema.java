@@ -1,6 +1,6 @@
 package hexlet.code.schemas;
 
-public class StringSchema extends BaseSchema<String> {
+public class StringSchema extends BaseSchema<Object> {
 
     /**
      * Checking the initial state of the object is specified.
